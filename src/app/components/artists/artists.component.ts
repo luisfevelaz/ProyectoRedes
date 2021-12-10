@@ -38,7 +38,7 @@ export class ArtistsComponent implements OnInit {
     this.spotify.routeArtist(id).subscribe(data =>{
       this.artista=data;
       this.loading=false;
-      //console.log(this.artista);
+      //console.log(this.artista.name);
       
     });
   }

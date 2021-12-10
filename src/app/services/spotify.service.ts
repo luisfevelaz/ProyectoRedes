@@ -11,7 +11,7 @@ export class SpotifyService {
 
   getQuery(query:string) {
     const headers = new HttpHeaders({
-      Authorization : 'Bearer BQBLTL1zxeFgnh7_7G0mbXJY-yj1jbkJ6OAvYd7rRs-PZZ7nxfmlAV2t5WOV3eQnQEg6LEOCz6AWtekwzW0'
+      Authorization : 'Bearer BQBfUT8yxfbPBKYwjGXdjM8xVj_23EI0_7P_q5HMcflyZzo6p9y8vrIXPMqd0wUdqhVQRYLvq8nzuCg5Rrs'
     })
 
     const url = `https://api.spotify.com/v1/${query}`;
@@ -35,6 +35,7 @@ export class SpotifyService {
       return data['tracks'];
     }));
   }
+  
 
   getArtists(term){
     // const headers = new HttpHeaders({

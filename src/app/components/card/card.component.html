@@ -1,7 +1,7 @@
 
 <div class="card-columns">
 
-    <div class="card btn" *ngFor="let item of items" (click)="verArtista(item)">
+    <div class="card btn bg-dark text-white" *ngFor="let item of items" (click)="verArtista(item)" >
         <img [src]="item.images | noImage" alt="" class="card-img-top">
         <div class="card-body">
             <h5 class="card-title">{{item.name}}</h5>

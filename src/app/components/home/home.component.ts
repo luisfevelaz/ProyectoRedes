@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   loading: boolean;
   error: boolean;
   mensajeError: string;
+  
 
   constructor(private spotify:SpotifyService) {
     this.loading = true;
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit {
       // this.releases = data.albums.items;
       this.releases = data;
       this.loading= false;
+      
       //console.log(this.releases);
     }, (errorServicio) => {
       this.loading=false;
@@ -34,6 +36,10 @@ export class HomeComponent implements OnInit {
       this.mensajeError = errorServicio.error.error.message;
       
     });
+
+    
+
+
   }
 
   ngOnInit(): void {
