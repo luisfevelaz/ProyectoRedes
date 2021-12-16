@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RegisterComponent } from './components/register/register.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
+
 @NgModule({
   declarations: [
     AppComponent,
