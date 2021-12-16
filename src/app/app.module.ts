@@ -19,6 +19,7 @@ import { CardComponent } from './components/card/card.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { DomSeguroPipe } from './pipes/domSeguro/dom-seguro.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,
