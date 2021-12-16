@@ -18,6 +18,12 @@ import { NoImagePipe } from './pipes/noImage/no-image.pipe';
 import { CardComponent } from './components/card/card.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { DomSeguroPipe } from './pipes/domSeguro/dom-seguro.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -29,12 +35,18 @@ import { DomSeguroPipe } from './pipes/domSeguro/dom-seguro.pipe';
     NoImagePipe,
     CardComponent,
     LoadingComponent,
-    DomSeguroPipe
+    DomSeguroPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES)
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    RouterModule.forRoot(ROUTES),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
