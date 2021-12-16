@@ -1,4 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { 
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(50,50,50));
+    color: rgb(220,220,220);
+}
+
 .artistImg {
     border-radius: 50%;
+}
+
+mat-form-field {
+    width: 90%;
+    margin: 10px auto;
+}
+
+mat-hint {
+    font-size: 15px;
+}
+
+mat-label {
+    font-size: 17px;
 }

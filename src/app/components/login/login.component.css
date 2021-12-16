@@ -1,0 +1,6 @@
+.form-container {
+    width: 80%;
+    min-height: 350px;
+    border-radius: 1.5rem;
+    background-color: rgba(10,10,10,0.8);
+}
