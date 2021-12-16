@@ -1,6 +1,7 @@
 <div class="row mb-3">
     <div class="col-12">
-        <input type="text" #term (keyup)="buscar(term.value)" class="form-control shadow" placeholder="Buscar artistas">
+        <input type="text" #term (keyup)="buscar(term.value)" placeholder="Buscar artistas"
+            class="form-control shadow border border-4 border-secondary">
     </div>
 </div>
 
@@ -14,15 +15,3 @@
         <app-card [items]="resultados"></app-card>
     </div>
 </div>
-
-<!-- <div class="card-columns">
-    <div class="card" *ngFor="let artista of resultados">
-        <img [src]="artista.images | noImage" alt="" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">{{artista.name}}</h5>
-            <p class="card-text">
-                <span class="badge badge-success m-1" *ngFor="let genre of artista.genres">{{genre}}</span>
-            </p>
-        </div>
-    </div>
-</div> -->

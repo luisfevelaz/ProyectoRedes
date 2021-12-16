@@ -5,15 +5,15 @@
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['home']">Home <span class="sr-only">(current)</span></a>
+      <ul class="navbar-nav mr-auto fs-6">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['home']" routerLinkActive>Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['search']">Search</a>
+          <a class="nav-link" [routerLink]="['search']" routerLinkActive>Búsqueda</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['artists']">Users</a>
+          <a class="nav-link" [routerLink]="['artists']" routerLinkActive>Conciertos</a>
         </li>
       </ul>
     </div>
