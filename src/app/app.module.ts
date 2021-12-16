@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { ArtistsComponent } from './components/artists/artists.component';
 import { HomeComponent } from './components/home/home.component';
@@ -12,8 +11,8 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 
 // Para hacer peticiones HTTP
-
 import { HttpClientModule } from '@angular/common/http';
+
 import { NoImagePipe } from './pipes/noImage/no-image.pipe';
 import { CardComponent } from './components/card/card.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
@@ -24,6 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { RegisterComponent } from './components/register/register.component';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatButtonModule } from '@angular/material/button';
     CardComponent,
     LoadingComponent,
     DomSeguroPipe,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -45,10 +47,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
     RouterModule.forRoot(ROUTES),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { disableClose: true, hasBackdrop: true } },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

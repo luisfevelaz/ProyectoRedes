@@ -8,3 +8,7 @@
 .text-link {
     cursor: pointer;
 }
+
+.text-link:hover {
+    color: rgb(105,240,174) !important;
+}

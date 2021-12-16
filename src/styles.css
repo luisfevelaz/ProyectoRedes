@@ -15,15 +15,33 @@ body {
     border-radius: 50%;
 }
 
+.backdropBackground {
+    background-color: rgba(105,240,174,0.1);
+    backdrop-filter: blur(3px);
+}
+
+.cancel-button {
+    background-color: rgb(85, 65, 135);
+}
+
 mat-form-field {
     width: 90%;
     margin: 10px auto;
 }
 
-mat-hint {
+mat-hint, mat-error {
     font-size: 15px;
 }
 
-mat-label {
-    font-size: 17px;
+mat-label, input {
+    font-size: 17px !important;
+}
+
+mat-dialog-container {
+    background-color: rgba(5,5,5,0.85) !important;
+}
+
+.mat-dialog-container {
+    border: 1px solid rgb(105,240,174) !important;
+    border-radius: 1.5em !important;
 }
