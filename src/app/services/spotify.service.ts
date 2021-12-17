@@ -1,19 +1,49 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { ERROR, sweetOpen } from '../components/shared/sweet-alert';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpotifyService {
+  spotifyToken: string = "";
+  credentials = 'ec066d9f9e9248108c032b59ee3cde7c:6751025ffae44dd2aa2143eaeff1278e';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {
+    //Ejectuamos inicialmente para obtener un primer token
+    this.getSpotifyToken();
+    //Cada hora obtenemos un token nuevo
+    setInterval(this.getSpotifyToken.bind(this), 3600000);
+  }
+
+  getSpotifyToken(){
+    //Credenciales a base64
+    let credentials64 = btoa(this.credentials);
+    //Headers necesarios para la solicitud
+    const headers = new HttpHeaders({
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization : `Basic ${credentials64}`
+    });
+    //Enviamos el cuerpo como un querystring ya que estamos usando application/x-www-form-urlencoded
+    const body = 'grant_type=client_credentials';
+    
+    this.http.post('https://accounts.spotify.com/api/token', body, { headers })
+      .subscribe(response => {
+        if(response)
+          this.spotifyToken = response["access_token"];  //obtenemos el token
+      }, error => {
+        //Mandamos una alerta al usuario si algo salió mal
+        sweetOpen('Token', 'No se pudo obtener el token de Spotify', ERROR);
+      });
+  }
 
   getQuery(query:string) {
     const headers = new HttpHeaders({
-      Authorization : 'Bearer BQAJmmKGD0FvP7Bixs0GZkBv2GnHk0_qtSqnk1Fh1QgNRPbxQRQXm-iWOnwrwEtSuVhRaxfwC0IcLMzuxqU'
-    })
-
+      Authorization : `Bearer ${this.spotifyToken}`
+    });
+    console.log("Usando el token: "+this.spotifyToken);
+    
     const url = `https://api.spotify.com/v1/${query}`;
     return this.http.get(url, {headers});
   }
@@ -29,7 +59,6 @@ export class SpotifyService {
       return data['tracks'];
     }));
   }
-  
 
   getArtists(term){
     return this.getQuery(`search?q=${term}&type=artist`).pipe(map(data => {
