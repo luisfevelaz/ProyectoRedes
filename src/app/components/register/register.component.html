@@ -1,24 +1,27 @@
 <p class="fs-5 text-center">Registro</p>
 <form [formGroup]="formGroup">
     <mat-form-field color="accent">
-        <mat-label>Correo electrónico</mat-label>
-        <input matInput formControlName="email" name="email">
+        <mat-label>Nombre de usuario</mat-label>
+        <input matInput formControlName="username" name="username">
         <mat-error>
             *Debes ingresar este campo
         </mat-error>
     </mat-form-field>
     <mat-form-field color="accent">
         <mat-label>Contraseña</mat-label>
-        <input matInput formControlName="password" name="password" type="password">
-        <mat-error>
+        <input matInput formControlName="password" name="password" type="password" (keyup)="passwordMatch()">
+        <mat-error *ngIf="this.formGroup.get('password')?.errors?.required">
             *Debes ingresar este campo
         </mat-error>
     </mat-form-field>
     <mat-form-field color="accent">
         <mat-label>Confirmar contraseña</mat-label>
-        <input matInput formControlName="confirmPass" name="confirmPass" type="password">
-        <mat-error>
+        <input matInput formControlName="confirmPass" name="confirmPass" type="password" (keyup)="passwordMatch()">
+        <mat-error *ngIf="this.formGroup.get('confirmPass')?.errors?.required">
             *Debes ingresar este campo
+        </mat-error>
+        <mat-error *ngIf="this.formGroup.get('confirmPass')?.errors?.wrongPassword">
+            *Las contraseñas no coinciden
         </mat-error>
     </mat-form-field>
 </form>
@@ -26,7 +29,8 @@
     <button mat-raised-button aria-label="Botón cancelar" class="cancel-button" (click)="close()">
         Cancelar
     </button>
-    <button mat-raised-button aria-label="Botón aceptar" color="accent" (click)="register()">
+    <button mat-raised-button aria-label="Botón aceptar" color="accent" (click)="register()"
+        [disabled]="formGroup.invalid">
         Aceptar
     </button>
 </div>
