@@ -15,8 +15,19 @@
     </div>
     <div class="col-6">
         <p class="h2 mb-3">Concierto en </p>
-        <div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3701.5032118750896!2d-102.31706358572806!3d21.915198062302764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ef1da1ab338d%3A0x89a0246637c42ddb!2sUniversidad%20Aut%C3%B3noma%20de%20Aguascalientes!5e0!3m2!1ses-419!2smx!4v1639675392884!5m2!1ses-419!2smx" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div id="map">
+            <google-map 
+                height="500px" 
+                width="70%"
+                [center]="getCenter(21.880843,-102.296096)"
+                [options]="options"
+            >
+            <map-marker
+                [position]="getPosition(21.880843,-102.296096)"
+            >
+          </map-marker>
+            </google-map>
+            
         </div>
     </div>
 

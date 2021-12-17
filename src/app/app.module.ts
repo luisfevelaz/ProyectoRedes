@@ -10,6 +10,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 
+import { GoogleMapsModule } from '@angular/google-maps'
+
 // Para hacer peticiones HTTP
 import { HttpClientModule } from '@angular/common/http';
 
@@ -50,7 +52,8 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
     MatButtonModule,
     MatDialogModule,
     RouterModule.forRoot(ROUTES),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    GoogleMapsModule
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { disableClose: true, hasBackdrop: true } },
