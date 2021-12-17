@@ -7,7 +7,8 @@ export class GlobalModel {
       GetID: '/LoginArt/',
       PostArtist: '/RegistroArt',
       DeleteArtist: '/borrarArt',
-      UpdateArtist: '/artista'
+      UpdateArtist: '/artista',
+      GetUser: '/artistaPorNombre'
     };
   
     public static querysConcerts = {
