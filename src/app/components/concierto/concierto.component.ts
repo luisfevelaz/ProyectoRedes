@@ -17,6 +17,7 @@ export class ConciertoComponent implements OnInit {
   });
   idArtist: any;
   blnNuevo: Boolean = false;
+  index: Number = 0;
 
 
   constructor(
@@ -26,29 +27,58 @@ export class ConciertoComponent implements OnInit {
   ) { 
     this.idArtist = data.id;
     this.blnNuevo = data.blnNuevo;
+    this.index = data.index;
+
 
     console.log("ID: ",this.idArtist);
+    console.log("bln nuevo: ", this.blnNuevo);
+    
     
   }
 
   ngOnInit(): void {
   }
 
-  altaModal(){
-    let body = {
-      id_artista: this.idArtist,
-      ciudad: this.formGroup.get("ciudad").value,
-      latitud: this.formGroup.get("latitud").value,
-      longitud: this.formGroup.get("longitud").value
-    };
-    this._conciertoService.post(body).then((resp: any) =>{
-      // console.log("ALTA CONCIERTO RESP: ",resp);
-      if(resp.success){
-        sweetOpen('Acción', 'Concierto creado y guardado', SUCCESS);
-      }else{
-        sweetOpen('Error', 'Este usuario no tiene derechos de edición sobre este perfil', ERROR);
-      }
-    });
+  accionModal(){
+    
+    if(this.blnNuevo){ // para alta de conciertos
+      let body = {
+        id_artista: this.idArtist,
+        ciudad: this.formGroup.get("ciudad").value,
+        latitud: this.formGroup.get("latitud").value,
+        longitud: this.formGroup.get("longitud").value,
+      };
+      this._conciertoService.post(body).then((resp: any) =>{
+        // console.log("ALTA CONCIERTO RESP: ",resp);
+        if(resp.success){
+          sweetOpen('Acción', 'Concierto creado y guardado', SUCCESS);
+        }else{
+          sweetOpen('Error', 'Este usuario no tiene derechos de edición sobre este perfil', ERROR);
+        }
+      });
+    }else{ // para modificar conciertos
+
+      let bodyUpdate = {
+        id_artista: this.idArtist,
+        ciudad: this.formGroup.get("ciudad").value,
+        latitud: this.formGroup.get("latitud").value,
+        longitud: this.formGroup.get("longitud").value,
+        id_concierto: this.index
+      };
+
+      console.log("a actualizar: ", bodyUpdate);
+      
+
+      this._conciertoService.update(bodyUpdate).then((resp:any)=>{
+        console.log(resp);
+        if(resp.success){
+          sweetOpen('Acción', 'Concierto editado', SUCCESS);
+        }else{
+          sweetOpen('Error', 'Este usuario no tiene derechos de edición sobre este perfil', ERROR);
+        }
+        
+      });
+    }
     this.close();
   }
 

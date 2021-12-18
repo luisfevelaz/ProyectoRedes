@@ -5,6 +5,7 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 import { ConciertoComponent } from '../concierto/concierto.component'
 import { MatDialog } from '@angular/material/dialog';
 import { ERROR, sweetOpen } from '../shared/sweet-alert';
+import { ConciertoService } from 'src/app/services/concierto.service';
 
 @Component({
   selector: 'app-artists',
@@ -16,10 +17,18 @@ export class ArtistsComponent implements OnInit {
   artista: any = {};
   tracks: any = [];
   loading: boolean;
+  conciertos: any = [];
+  //para mapas
+  options: google.maps.MapOptions = {
+    disableDoubleClickZoom: true,
+    maxZoom: 15,
+    minZoom: 3,
+  }
 
   constructor(private aRoute: ActivatedRoute,
     private spotify: SpotifyService,
     private artistaService: ArtistaServiceService,
+    private _conciertoService: ConciertoService,
     private dialog: MatDialog
   ) {
     this.loading = true;
@@ -28,9 +37,11 @@ export class ArtistsComponent implements OnInit {
       if(isNaN(params['id'])){
         this.getSpotifyArtist(params['id']);
         this.getTopTracks(params['id']);
+        this.getConcerts(params['id']);
       }
       else{
-        this.getArtist(params['id'])
+        this.getArtist(params['id']);
+        this.getConcerts(params['id']);
       }
     });
   }
@@ -46,6 +57,14 @@ export class ArtistsComponent implements OnInit {
     });
   }
 
+  getConcerts(id){
+    this._conciertoService.getByID(id).subscribe((data: any) =>{
+      console.log('GET CONCIERTOS',data);
+      this.conciertos = data.id;
+      
+    })
+  }
+
   async getArtist(id){
     let response = await this.artistaService.getByID(id);
     response = response["id"];
@@ -59,14 +78,14 @@ export class ArtistsComponent implements OnInit {
   noArtistPage(){
     sweetOpen('Enlace', 'Lo sentimos pero el artista no cuenta con una página oficial', ERROR);
   }
-
-  openConcierto(){
+  openConcierto(accion,index){
     try{
       //Abrimos el modal para edición
       this.dialog.open(ConciertoComponent, {
         data: {
           id: this.artista.id,
-          blnNuevo: true
+          blnNuevo: accion,
+          index: index
         },
         backdropClass: 'backdropBackground'
       });
@@ -77,6 +96,22 @@ export class ArtistsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  getCenter(lati: Number,longi: Number){
+    let center = {
+      lat: lati,
+      lng:  longi
+    }
+    return center
+  }
+
+  getPosition(lat,lng){
+    let position = {
+      lat: lat,
+      lng: lng
+    }
+    return position
   }
 
 }

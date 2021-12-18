@@ -12,7 +12,6 @@
         <p class="fs-6 text-link mt-3" *ngIf="!artista.external_urls?.spotify">
             <a (click)="noArtistPage()" class="text-light" target="_blank">Visitar página del artista</a>
         </p>
-
     </div>
     <div class="col-7">
         <h1 class="my-4 fs-1 text-white">Artista: {{artista.name}}</h1>
@@ -31,12 +30,8 @@
             <div class="d-flex">
                 <button mat-flat-button color="accent"
                     class="btn-lg border border-success my-3 mr-3 d-block"
-                    (click)="openConcierto()">
+                    (click)="openConcierto(true,0)">
                     Crear
-                </button>
-                <button mat-flat-button color="primary"
-                    class="btn-lg border border-dark my-3 d-block">
-                    Modificar
                 </button>
             </div>
         </div>
@@ -84,3 +79,41 @@
         </table>
     </div>
 </div> -->
+
+<div class="row m-5">
+    <h2>Próximos conciertos </h2>
+    <div class="col">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ciudad</th>
+                    <th>Ubicación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let concierto of conciertos; let i = index">
+                    <td class="align-middle fs-3">{{concierto.ciudad}}</td>
+                    <td class="w-75">
+                        <google-map 
+                        height="500px" 
+                        width="100%"
+                        [center]="getCenter(concierto.latitud,concierto.longitud)"
+                        [options]="options"
+                        >
+                            <map-marker
+                                [position]="getPosition(concierto.latitud,concierto.longitud)"
+                            >
+                            </map-marker>
+                        </google-map>
+                        <button mat-flat-button color="primary"
+                            class="btn-lg border border-dark my-3 d-block"
+                            (click)="openConcierto(false,concierto.id_concierto)">
+                            Modificar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
