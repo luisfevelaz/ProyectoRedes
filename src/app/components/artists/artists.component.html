@@ -9,6 +9,10 @@
         <p class="fs-6 text-link mt-3" *ngIf="artista.external_urls?.spotify">
             <a [href]="artista.external_urls.spotify" class="text-light" target="_blank">Visitar página del artista</a>
         </p>
+        <p class="fs-6 text-link mt-3" *ngIf="!artista.external_urls?.spotify">
+            <a (click)="noArtistPage()" class="text-light" target="_blank">Visitar página del artista</a>
+        </p>
+
     </div>
     <div class="col-7">
         <h1 class="my-4 fs-1 text-white">Artista: {{artista.name}}</h1>
@@ -39,7 +43,26 @@
     </div>
 </div>
 
-<div class="row m-5">
+<div class="accordion row m-5 " id="accordionPanel">
+    <div class="accordion-item" *ngFor="let track of tracks; let i = index">
+        <h2 class="accordion-header" [id]="'headingOne'+i">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne'+i"  aria-expanded="false" aria-controls="collapseOne">
+            {{track.name}}
+        </button>
+        </h2>
+        <div [id]="'collapseOne'+i" class="accordion-collapse collapse" [attr.aria-labelledby]="'headingOne'+i">
+        <div class="accordion-body d-flex justify-content-around align-items-center">
+            <figure>
+                <figcaption class="text-center fs-5 my-3">Álbum: {{track.album.name}}</figcaption>
+                <img [src]="track.album.images | noImage" alt="Imagen de álbum" class="artistImg">
+            </figure>
+            <iframe [src]="track.uri | domSeguro" width="400" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row m-5">
     <div class="col">
         <table class="table">
             <thead>
@@ -60,4 +83,4 @@
             </tbody>
         </table>
     </div>
-</div>
+</div> -->
