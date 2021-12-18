@@ -15,11 +15,11 @@
     </div>
     <div class="col-7">
         <h1 class="my-4 fs-1 text-white">Artista: {{artista.name}}</h1>
-        <div class="d-flex" *ngIf="myProfile">
-            <button mat-flat-button color="accent"
+        <div class="d-flex">
+            <!-- <button mat-flat-button color="accent" *ngIf="myProfile"
                 class="btn-lg border border-success my-3 mr-3">
                 Modificar
-            </button>
+            </button> -->
             <button mat-flat-button color="primary" [routerLink]="['/home']"
                 class="btn-lg border border-dark my-3">
                 Regresar
@@ -57,29 +57,6 @@
     </div>
 </div>
 
-<!-- <div class="row m-5">
-    <div class="col">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Album</th>
-                    <th>Cancion</th>
-                    <th>Vista previa</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let track of tracks">
-                    <td class="w-25"><img [src]="track.album.images | noImage" alt="" class="w-75"></td>
-                    <td>{{track.album.name}}</td>
-                    <td>{{track.name}}</td>
-                    <td><iframe [src]="track.uri | domSeguro" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div> -->
-
 <div class="row m-5">
     <h2>Próximos conciertos </h2>
     <div class="col">
@@ -107,7 +84,8 @@
                         </google-map>
                         <button mat-flat-button color="primary"
                             class="btn-lg border border-dark my-3 d-block"
-                            (click)="openConcierto(false,concierto.id_concierto)">
+                            (click)="openConcierto(false,concierto.id_concierto)"
+                            *ngIf="myProfile">
                             Modificar
                         </button>
                     </td>
