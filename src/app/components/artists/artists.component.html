@@ -15,7 +15,7 @@
     </div>
     <div class="col-7">
         <h1 class="my-4 fs-1 text-white">Artista: {{artista.name}}</h1>
-        <div class="d-flex">
+        <div class="d-flex" *ngIf="myProfile">
             <button mat-flat-button color="accent"
                 class="btn-lg border border-success my-3 mr-3">
                 Modificar
@@ -25,7 +25,7 @@
                 Regresar
             </button>
         </div>
-        <div>
+        <div *ngIf="myProfile">
             <p class="fs-3 my-4">Acciones sobre conciertos</p>
             <div class="d-flex">
                 <button mat-flat-button color="accent"

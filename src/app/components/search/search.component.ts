@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArtistaServiceService } from 'src/app/services/artista-service.service';
 import { ConciertoService } from 'src/app/services/concierto.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
+import { UsersService } from 'src/app/services/users.service';
 
 
 @Component({
@@ -15,7 +16,15 @@ export class SearchComponent implements OnInit {
   encontrado: any;
   loading: boolean;
 
-  constructor(private spotify:SpotifyService, private _artista:ArtistaServiceService, private _concierto:ConciertoService) {
+  constructor(
+    private spotify:SpotifyService,
+    private _artista:ArtistaServiceService,
+    private _concierto:ConciertoService,
+    private _usersService: UsersService
+  ) {}
+
+  ngOnInit(): void {
+    this._usersService.isUserInSession();
   }
 
   buscar(term){
@@ -141,8 +150,4 @@ export class SearchComponent implements OnInit {
 
     return resultados;
   }
-
-  ngOnInit(): void {
-  }
-
 }

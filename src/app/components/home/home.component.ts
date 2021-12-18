@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // para hacer peticiones HTTP
 //import { HttpClient } from '@angular/common/http';
 import { SpotifyService } from 'src/app/services/spotify.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-home',
@@ -15,22 +16,13 @@ export class HomeComponent implements OnInit {
   error: boolean;
   mensajeError: string;
   
-  constructor(private spotify: SpotifyService) {
-    this.loading = true;
+  constructor(private _usersService: UsersService) {
     this.error = false;
-    /* this.spotify.getNewReleses().subscribe((data: any) =>{
-      // this.releases = data.albums.items;
-      this.releases = data;
-      this.loading= false;
-    }, (errorServicio) => {
-      this.loading = false;
-      this.error = true;
-      this.mensajeError = errorServicio.error.error.message; 
-    }); */
-    this.loading = false; //temporalmente quitamos el loader
+    this.loading = false;
   }
 
   ngOnInit(): void {
+    this._usersService.isUserInSession();
   }
 
 }

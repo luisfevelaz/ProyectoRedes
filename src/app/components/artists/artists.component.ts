@@ -6,6 +6,7 @@ import { ConciertoComponent } from '../concierto/concierto.component'
 import { MatDialog } from '@angular/material/dialog';
 import { ERROR, sweetOpen } from '../shared/sweet-alert';
 import { ConciertoService } from 'src/app/services/concierto.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-artists',
@@ -14,6 +15,7 @@ import { ConciertoService } from 'src/app/services/concierto.service';
   ]
 })
 export class ArtistsComponent implements OnInit {
+  myProfile: boolean = false;
   artista: any = {};
   tracks: any = [];
   loading: boolean;
@@ -25,13 +27,17 @@ export class ArtistsComponent implements OnInit {
     minZoom: 3,
   }
 
-  constructor(private aRoute: ActivatedRoute,
+  constructor(
+    private aRoute: ActivatedRoute,
     private spotify: SpotifyService,
     private artistaService: ArtistaServiceService,
     private _conciertoService: ConciertoService,
+    private _usersService: UsersService,
     private dialog: MatDialog
   ) {
     this.loading = true;
+    let id = this._usersService.getToken();
+    id = id["id"];
     this.aRoute.params.subscribe(params =>{
       console.log(params);
       if(isNaN(params['id'])){
@@ -43,7 +49,15 @@ export class ArtistsComponent implements OnInit {
         this.getArtist(params['id']);
         this.getConcerts(params['id']);
       }
+
+      if(id==params['id']){
+        this.myProfile = true;
+      }
     });
+  }
+
+  ngOnInit(): void {
+    this._usersService.isUserInSession();
   }
 
   getTopTracks(id){
@@ -61,8 +75,7 @@ export class ArtistsComponent implements OnInit {
     this._conciertoService.getByID(id).subscribe((data: any) =>{
       console.log('GET CONCIERTOS',data);
       this.conciertos = data.id;
-      
-    })
+    });
   }
 
   async getArtist(id){
@@ -78,6 +91,7 @@ export class ArtistsComponent implements OnInit {
   noArtistPage(){
     sweetOpen('Enlace', 'Lo sentimos pero el artista no cuenta con una página oficial', ERROR);
   }
+
   openConcierto(accion,index){
     try{
       //Abrimos el modal para edición
@@ -93,9 +107,6 @@ export class ArtistsComponent implements OnInit {
     catch(e){
       console.log(e);
     }
-  }
-
-  ngOnInit(): void {
   }
 
   getCenter(lati: Number,longi: Number){

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="inSession">
     <a class="navbar-brand" href="#">Find the new Artist</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,5 +16,8 @@
           <a class="nav-link" [routerLink]="['artists']" routerLinkActive>Conciertos</a>
         </li>
       </ul>
+      <button mat-raised-button aria-label="Botón cancelar" *ngIf="inSession" class="cancel-button" (click)="logOut()">
+        Cerrar sesión
+      </button>
     </div>
   </nav>

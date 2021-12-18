@@ -1,18 +1,18 @@
 <div class="container">
     <div class="form-container my-auto mx-auto p-5 text-white">
-        <form class="text-center">
+        <form class="text-center" [formGroup]="formGroup">
             <mat-form-field appearance="outline" color="accent">
-                <mat-label>Correo electrónico</mat-label>
-                <input matInput placeholder="artista@example.com">
-                <mat-hint>Correo registrado en el sitio</mat-hint>
+                <mat-label>Nombre de usuario</mat-label>
+                <input matInput formControlName="usuario" placeholder="Username">
+                <mat-hint>Nickname en el sitio</mat-hint>
             </mat-form-field>
             <mat-form-field appearance="outline" color="accent">
                 <mat-label>Contraseña</mat-label>
-                <input matInput placeholder="artista@example.com">
+                <input matInput formControlName="password" type="password" placeholder="artista@example.com">
                 <mat-hint>Contraseña asociada al usuario</mat-hint>
             </mat-form-field>
         </form>
-        <button mat-stroked-button color="accent" [routerLink]="['/home']"
+        <button mat-stroked-button color="accent" (click)="login()" [disabled]="formGroup.invalid"
             class="btn-lg d-block mx-auto border border-success my-3">
             Iniciar sesión
         </button>
