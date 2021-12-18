@@ -27,6 +27,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { RegisterComponent } from './components/register/register.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { ConciertoComponent } from './components/concierto/concierto.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
     LoadingComponent,
     DomSeguroPipe,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ConciertoComponent
   ],
   imports: [
     BrowserModule,

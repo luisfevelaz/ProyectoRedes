@@ -1,0 +1,34 @@
+<p class="fs-5 text-center">Registro de concierto</p>
+<form [formGroup]="formGroup">
+    <mat-form-field color="accent">
+        <mat-label>Ciudad</mat-label>
+        <input matInput formControlName="ciudad" name="ciudad">
+        <mat-error>
+            *Debes ingresar este campo
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field color="accent">
+        <mat-label>Latitud</mat-label>
+        <input matInput formControlName="latitud" name="latitud">
+        <mat-error>
+            *Debes ingresar este campo
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field color="accent">
+        <mat-label>Laongitud</mat-label>
+        <input matInput formControlName="longitud" name="longitud">
+        <mat-error>
+            *Debes ingresar este campo
+        </mat-error>
+    </mat-form-field>
+</form>
+<div class="d-flex justify-content-around mt-3">
+    <button mat-raised-button aria-label="Botón cancelar" class="cancel-button" (click)="close()">
+        Cancelar
+    </button>
+    <button mat-raised-button aria-label="Botón aceptar" color="accent" (click)="altaModal()"
+        [disabled]="formGroup.invalid">
+        Aceptar
+    </button>
+</div>
+

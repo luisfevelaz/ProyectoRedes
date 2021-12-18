@@ -113,8 +113,8 @@ export class SearchComponent implements OnInit {
           genres: element.genres,
           images: element.images,
           name: element.name,
-          latitud: coordenadas.latitud,
-          longitud: coordenadas.longitud
+          latitud: ((Math.random() - 0.5) * 2) / 10,
+          longitud: ((Math.random() - 0.5) * 2) / 10
         });
       }
       resultados.push({
