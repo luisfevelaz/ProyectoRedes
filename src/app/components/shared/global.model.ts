@@ -1,7 +1,7 @@
 
 export class GlobalModel {
     // public static apiURL: string = 'http://25.47.229.56:3000';
-    public static apiURL: string = 'http://25.90.103.48:3000';
+    public static apiURL: string = 'http://localhost:3000';
   
     public static querysArtists = {
       GetAll: '/artista',
