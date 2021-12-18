@@ -4,11 +4,3 @@
     border-radius: 1.5rem;
     background-color: rgba(10,10,10,0.8);
 }
-
-.text-link {
-    cursor: pointer;
-}
-
-.text-link:hover {
-    color: rgb(105,240,174) !important;
-}

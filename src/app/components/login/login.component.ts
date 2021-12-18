@@ -8,7 +8,7 @@ import { RegisterComponent } from '../register/register.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  
   constructor(
     private dialog: MatDialog  //variable para abrir modales/diálogos
   ) { }
@@ -21,14 +21,7 @@ export class LoginComponent implements OnInit {
       //Abrimos el modal para edición
       this.dialog.open(RegisterComponent, {
         backdropClass: 'backdropBackground'
-      })
-        .afterClosed().subscribe(respuesta => {
-          //Si se recibe OK mostramos un SweetAlert
-          if(respuesta=='OK'){
-            
-          }
-        }
-      );
+      });
     }
     catch(e){
       console.log(e);

@@ -12,7 +12,7 @@ export class ArtistaServiceService {
     console.log('El servicio de aristas esta cargado');
   }
 
-   get() { return this._http.get(`${this.originUrl}${this.actions.GetAll}`); }
+   get() { return this._http.get(`${this.originUrl}${this.actions.GetAll}`).toPromise(); }
 
    getByID(id: any) { return this._http.get(`${this.originUrl}${this.actions.GetID}${id}`); }
 

@@ -1,8 +1,15 @@
 <p class="fs-5 text-center">Registro</p>
 <form [formGroup]="formGroup">
     <mat-form-field color="accent">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" name="nombre">
+        <mat-error>
+            *Debes ingresar este campo
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field color="accent">
         <mat-label>Nombre de usuario</mat-label>
-        <input matInput formControlName="username" name="username">
+        <input matInput formControlName="usuario" name="usuario">
         <mat-error>
             *Debes ingresar este campo
         </mat-error>

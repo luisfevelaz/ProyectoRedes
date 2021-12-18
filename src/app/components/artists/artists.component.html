@@ -3,16 +3,38 @@
         <app-loading></app-loading>
     </div>
 </div>
-<div class="row" *ngIf="!loading">
-    <div class="col-2">
-        <img class="img-thumbnail artistImg" [src]="artista.images | noImage" alt="">
+<div class="row mx-5" *ngIf="!loading">
+    <div class="col-5 text-center">
+        <img class="artistImg img-fluid" [src]="artista.images | noImage" alt="">
+        <p class="fs-6 text-link mt-3">
+            <a [href]="artista.external_urls.spotify" class="text-light" target="_blank">Visitar página del artista</a>
+        </p>
     </div>
-    <div class="col">
-        <h3>{{artista.name}}</h3>
-        <p><a [href]="artista.external_urls.spotify" target="_blank">Ir a la página del artista</a></p>
-    </div>
-    <div class="col-4">
-        <button [routerLink]="['/home']" class="btn btn-success">Regresar</button>
+    <div class="col-7">
+        <h1 class="my-4 fs-1 text-white">Artista: {{artista.name}}</h1>
+        <div class="d-flex">
+            <button mat-flat-button color="accent"
+                class="btn-lg border border-success my-3 mr-3">
+                Modificar
+            </button>
+            <button mat-flat-button color="primary" [routerLink]="['/home']"
+                class="btn-lg border border-dark my-3">
+                Regresar
+            </button>
+        </div>
+        <div>
+            <p class="fs-3 my-4">Acciones sobre conciertos</p>
+            <div class="d-flex">
+                <button mat-flat-button color="accent"
+                    class="btn-lg border border-success my-3 mr-3 d-block">
+                    Crear
+                </button>
+                <button mat-flat-button color="primary"
+                    class="btn-lg border border-dark my-3 d-block">
+                    Modificar
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 

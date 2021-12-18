@@ -11,8 +11,20 @@ body {
     color: rgb(220,220,220);
 }
 
+.text-link, .text-link a  {
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+.text-link:hover, .text-link:hover a {
+    color: rgb(105,240,174) !important;
+}
+
 .artistImg {
-    border-radius: 50%;
+    border-radius: 20%;
+    border: 5px solid rgb(105,240,174);
+    padding: 0.25rem;
+    max-width: 300px;
 }
 
 .backdropBackground {

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ArtistaServiceService } from 'src/app/services/artista-service.service';
 import { ERROR, SUCCESS, sweetOpen } from '../shared/sweet-alert';
-// import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +11,8 @@ import { ERROR, SUCCESS, sweetOpen } from '../shared/sweet-alert';
 })
 export class RegisterComponent implements OnInit {
   formGroup = new FormGroup({
-    "username": new FormControl('', [Validators.required]),
+    "nombre": new FormControl('', [Validators.required]),
+    "usuario": new FormControl('', [Validators.required]),
     "password": new FormControl('', [Validators.required]),
     "confirmPass": new FormControl('', [Validators.required]),
   });
@@ -50,13 +50,31 @@ export class RegisterComponent implements OnInit {
     delete account["confirmPass"];  //borramos la confirmación
 
     try {
-      // await this._artistaService.post(account);
+      let artistas = await this._artistaService.get();
+      console.log(artistas);
       
-      sweetOpen('Acción', 'El usuario se ha creado exitosamente', SUCCESS);
-      // sweetOpen('Acción', 'El usuario no pudo ser creado', ERROR);
+      let existe = false;
+
+      if(artistas){
+        let artistArray: any[] = artistas["array"];
+        
+        for(let i = 0; i<artistas["array"].length; i++){
+          if(artistArray[i].usuario==account["usuario"]){
+            existe = true;
+            break;
+          }
+        }
+      }
+
+      if(!existe){
+        await this._artistaService.post(account);
+        sweetOpen('Acción', 'El usuario se ha creado exitosamente', SUCCESS);
+      }
+      else
+        sweetOpen('Acción', 'Ya existe una cuenta con ese nombre de usuario', ERROR);
     }
     catch(e){
-      
+      sweetOpen('Acción', 'No se pudo crear el usuario', ERROR);
     }
     this.close('OK');
   }
