@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpotifyService } from 'src/app/services/spotify.service';
+import { ConciertoComponent } from '../concierto/concierto.component'
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-artists',
@@ -14,7 +16,7 @@ export class ArtistsComponent implements OnInit {
   tracks: any = [];
   loading: boolean;
 
-  constructor(private aRoute:ActivatedRoute, private spotify:SpotifyService) {
+  constructor(private aRoute:ActivatedRoute, private spotify:SpotifyService,private dialog: MatDialog  ) {
     this.loading = true;
     this.aRoute.params.subscribe(params =>{
       console.log(params);
@@ -42,6 +44,23 @@ export class ArtistsComponent implements OnInit {
       
     });
   }
+
+  openConcierto(){
+    try{
+      //Abrimos el modal para edición
+      this.dialog.open(ConciertoComponent, {
+        data: {
+          id: this.artista.id,
+          blnNuevo: true
+        },
+        backdropClass: 'backdropBackground'
+      });
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+
 
   ngOnInit(): void {
   }

@@ -14,7 +14,6 @@ export class SearchComponent implements OnInit {
 
   resultados: any=[];
   spotifyRes: any=[];
-  bdRes: any=[];
   encontrado: any;
   loading: boolean;
 
@@ -58,7 +57,6 @@ export class SearchComponent implements OnInit {
 
     this._artista.getByUser(body).then(async(data: any) =>{
       console.log(JSON.stringify(data));
-      this.bdRes = data;
       this.encontrado = {
         id: data.name.id,
         name: data.name.usuario,
@@ -134,8 +132,8 @@ export class SearchComponent implements OnInit {
           genres: element.genres,
           images: element.images,
           name: element.name,
-          latitud: coordenadas.latitud,
-          longitud: coordenadas.longitud
+          latitud: ((Math.random() - 0.5) * 2) / 10,
+          longitud: ((Math.random() - 0.5) * 2) / 10
         });
       }
       resultados.push({
