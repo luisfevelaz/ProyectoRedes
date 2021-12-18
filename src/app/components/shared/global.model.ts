@@ -1,13 +1,14 @@
 
 export class GlobalModel {
-    public static apiURL: string = 'http://25.47.229.56:3000';
+    public static apiURL: string = 'http://localhost:3000';
   
     public static querysArtists = {
       GetAll: '/artista',
       GetID: '/LoginArt/',
       PostArtist: '/RegistroArt',
       DeleteArtist: '/borrarArt',
-      UpdateArtist: '/artista'
+      UpdateArtist: '/artista',
+      GetUser: '/artistaPorNombre'
     };
   
     public static querysConcerts = {
@@ -15,7 +16,8 @@ export class GlobalModel {
         GetID: '/LoginConcierto/',
         PostConcert: '/RegistroConcierto',
         DeleteConcert: '/borrarConcierto',
-        UpdateConcert: '/concierto'
+        UpdateConcert: '/concierto',
+        getCordenadas: '/cordenadas'
     };
   
   }

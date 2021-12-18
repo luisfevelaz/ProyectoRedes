@@ -22,4 +22,5 @@ export class ArtistaServiceService {
 
    update(body: any) { return this._http.put(`${this.originUrl}${this.actions.UpdateArtist}`, body).toPromise(); }
 
+   getByUser(body: any) { return this._http.post(`${this.originUrl}${this.actions.GetUser}`, body).toPromise(); }
 }
