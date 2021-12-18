@@ -54,10 +54,10 @@ export class CardComponent implements OnInit {
     return center
   }
 
-  getPosition(lati,longi){
+  getPosition(lat,lng){
     let position = {
-      lat: 21.880843,
-      lng: -102.296096
+      lat: lat,
+      lng: lng
     }
     return position
   }
