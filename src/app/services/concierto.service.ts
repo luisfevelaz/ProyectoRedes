@@ -22,6 +22,6 @@ export class ConciertoService {
 
    update(body: any) { return this._http.put(`${this.originUrl}${this.actions.UpdateConcert}`, body).toPromise(); }
 
-   getCordenadas(id: any) { return this._http.get(`${this.originUrl}${this.actions.getCordenadas}${id}`); }
+   getCordenadas(id: any) { return this._http.post(`${this.originUrl}${this.actions.getCordenadas}`,id).toPromise(); }
 
 }

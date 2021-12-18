@@ -19,11 +19,11 @@
             <google-map 
                 height="500px" 
                 width="70%"
-                [center]="getCenter(21.880843,-102.296096)"
+                [center]="getCenter(item.latitud,item.longitud)"
                 [options]="options"
             >
             <map-marker
-                [position]="getPosition(21.880843,-102.296096)"
+                [position]="getPosition(item.latitud,item.longitud)"
             >
           </map-marker>
             </google-map>

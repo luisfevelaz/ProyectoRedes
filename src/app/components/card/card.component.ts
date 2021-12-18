@@ -33,8 +33,7 @@ export class CardComponent implements OnInit {
    let artistaID;
    
 
-   if(item.type === 'album') artistaID = item.artists[0].id;
-   else artistaID = item.id;
+   artistaID = item.id;
   
    this.router.navigate(['/artists',artistaID]);
    

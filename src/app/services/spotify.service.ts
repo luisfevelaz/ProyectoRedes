@@ -7,7 +7,7 @@ import { ERROR, sweetOpen } from '../components/shared/sweet-alert';
   providedIn: 'root'
 })
 export class SpotifyService {
-  spotifyToken: string = "";
+  spotifyToken: string = "BQBfrKyp3GHGEnUFJQFVE-NckijmZaszik7V6asrElZvZu1CnKvCc9NAoifv0ZahkDaZG8L9_RePFDm8ynM";
   credentials = 'ec066d9f9e9248108c032b59ee3cde7c:6751025ffae44dd2aa2143eaeff1278e';
 
   constructor(private http: HttpClient) {

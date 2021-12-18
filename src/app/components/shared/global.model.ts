@@ -1,6 +1,6 @@
 
 export class GlobalModel {
-    public static apiURL: string = 'http://25.47.229.56:3000';
+    public static apiURL: string = 'http://localhost:3000';
   
     public static querysArtists = {
       GetAll: '/artista',
@@ -17,7 +17,7 @@ export class GlobalModel {
         PostConcert: '/RegistroConcierto',
         DeleteConcert: '/borrarConcierto',
         UpdateConcert: '/concierto',
-        getCordenadas: '/cordenadas/'
+        getCordenadas: '/cordenadas'
     };
   
   }
