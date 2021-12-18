@@ -40,7 +40,7 @@ export class ConciertoComponent implements OnInit {
       ciudad: this.formGroup.get("ciudad").value,
       latitud: this.formGroup.get("latitud").value,
       longitud: this.formGroup.get("longitud").value
-    }
+    };
     this._conciertoService.post(body).then((resp: any) =>{
       // console.log("ALTA CONCIERTO RESP: ",resp);
       if(resp.success){
@@ -48,9 +48,8 @@ export class ConciertoComponent implements OnInit {
       }else{
         sweetOpen('Error', 'Este usuario no tiene derechos de edición sobre este perfil', ERROR);
       }
-      
-    })
-
+    });
+    this.close();
   }
 
   //Función de cierre del modal con envío de respuesta opcional

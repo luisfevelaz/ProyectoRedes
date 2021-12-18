@@ -71,7 +71,6 @@ export class ArtistsComponent implements OnInit {
     }
   }
 
-
   ngOnInit(): void {
   }
 
