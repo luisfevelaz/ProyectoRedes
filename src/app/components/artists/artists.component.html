@@ -86,13 +86,13 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Ciudad</th>
-                    <th>Ubicación</th>
+                    <th class="text-light">Ciudad</th>
+                    <th class="text-light">Ubicación</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let concierto of conciertos; let i = index">
-                    <td class="align-middle fs-3">{{concierto.ciudad}}</td>
+                    <td class="align-middle fs-3 text-light">{{concierto.ciudad}}</td>
                     <td class="w-75">
                         <google-map 
                         height="500px" 
@@ -112,7 +112,24 @@
                         </button>
                     </td>
                 </tr>
+                <tr *ngIf="!conciertosBool">
+                    <td class="align-middle fs-3 text-light">Londres</td>
+                    <td class="w-75">
+                        <google-map 
+                        height="500px" 
+                        width="100%"
+                        [center]="getCenter(51.5072,-0.1275)"
+                        [options]="options"
+                        >
+                            <map-marker
+                                [position]="getPosition(51.5072,-0.1275)"
+                            >
+                            </map-marker>
+                        </google-map>
+                    </td>
+                </tr>
             </tbody>
+            
         </table>
     </div>
 </div>

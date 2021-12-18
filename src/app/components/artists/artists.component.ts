@@ -18,6 +18,7 @@ export class ArtistsComponent implements OnInit {
   tracks: any = [];
   loading: boolean;
   conciertos: any = [];
+  conciertosBool: Boolean = false;
   //para mapas
   options: google.maps.MapOptions = {
     disableDoubleClickZoom: true,
@@ -59,9 +60,9 @@ export class ArtistsComponent implements OnInit {
 
   getConcerts(id){
     this._conciertoService.getByID(id).subscribe((data: any) =>{
-      console.log('GET CONCIERTOS',data);
+      console.log('GET CONCIERTOS',data.success);
       this.conciertos = data.id;
-      
+      this.conciertosBool = data.success;
     })
   }
 
@@ -97,6 +98,7 @@ export class ArtistsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
   getCenter(lati: Number,longi: Number){
     let center = {
