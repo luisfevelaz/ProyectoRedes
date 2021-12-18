@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ArtistaServiceService } from 'src/app/services/artista-service.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
 
 @Component({
@@ -9,38 +10,46 @@ import { SpotifyService } from 'src/app/services/spotify.service';
   ]
 })
 export class ArtistsComponent implements OnInit {
-
   artista: any = {};
   tracks: any = [];
   loading: boolean;
 
-  constructor(private aRoute:ActivatedRoute, private spotify:SpotifyService) {
+  constructor(private aRoute: ActivatedRoute,
+    private spotify: SpotifyService,
+    private artistaService: ArtistaServiceService
+  ) {
     this.loading = true;
     this.aRoute.params.subscribe(params =>{
       console.log(params);
-      this.getArtist(params['id']);
-      this.getTopTracks(params['id']);
-      // this.spotify.routeArtist(params['id']).subscribe(data =>{
-      //   this.artista=data;
-      //   this.loading=false;
-      //   console.log(this.artista);
-        
-      // });
-      
+      if(isNaN(params['id'])){
+        this.getSpotifyArtist(params['id']);
+        this.getTopTracks(params['id']);
+      }
+      else{
+        this.getArtist(params['id'])
+      }
     });
   }
 
   getTopTracks(id){
-    this.spotify.getTopTracks(id).subscribe(data => this.tracks=data);
+    this.spotify.getTopTracks(id).subscribe(data => this.tracks = data);
   }
 
-  getArtist(id) {
+  getSpotifyArtist(id) {
     this.spotify.routeArtist(id).subscribe(data =>{
-      this.artista=data;
-      this.loading=false;
-      //console.log(this.artista.name);
-      
+      this.artista = data;
+      this.loading = false;
     });
+  }
+
+  async getArtist(id){
+    let response = await this.artistaService.getByID(id);
+    response = response["id"];
+    this.artista = {
+      id: response["id"],
+      name: response["usuario"]
+    }
+    this.loading = false;
   }
 
   ngOnInit(): void {

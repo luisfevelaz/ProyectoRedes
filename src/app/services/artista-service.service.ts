@@ -14,7 +14,7 @@ export class ArtistaServiceService {
 
    get() { return this._http.get(`${this.originUrl}${this.actions.GetAll}`).toPromise(); }
 
-   getByID(id: any) { return this._http.get(`${this.originUrl}${this.actions.GetID}${id}`); }
+   getByID(id: any) { return this._http.get(`${this.originUrl}${this.actions.GetID}${id}`).toPromise(); }
 
    post(body: any) { return this._http.post(`${this.originUrl}${this.actions.PostArtist}`, body).toPromise(); }
 

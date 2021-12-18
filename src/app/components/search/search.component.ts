@@ -11,69 +11,49 @@ import { SpotifyService } from 'src/app/services/spotify.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
-  resultados: any=[];
-  spotifyRes: any=[];
-  bdRes: any=[];
+  resultados: any = [];
   encontrado: any;
   loading: boolean;
 
   constructor(private spotify:SpotifyService, private _artista:ArtistaServiceService, private _concierto:ConciertoService) {
-   
   }
 
   buscar(term){
-    if(term ===''){
-      this.resultados=[];
-      this.spotifyRes = [];
+    if(term === ''){
+      this.resultados = [];
       return;
     }
-    
+    this.loading = true;
 
-    this.loading=true;
-
-    
-  
     this.spotify.getArtists(term).subscribe((data: any) =>{
       console.log(data);
-     
-      this.resultados= data;
-      this.spotifyRes = data;
-      this.getUsuario(term,data)
-      
-      // this.loading = false;
+      this.resultados = data;
+      this.getUsuario(term,data);
+      this.loading = false;
     });
-
   }
 
    getUsuario(term,dataSpoty): void {
     var body = {
       usuario: term
     };
-
-    var coordenadas ={
-      // latitud: null,
-      // longitud: null
-    }
+    var coordenadas = {};
 
     this._artista.getByUser(body).then(async(data: any) =>{
       console.log(JSON.stringify(data));
-      this.bdRes = data;
       this.encontrado = {
         id: data.name.id,
         name: data.name.usuario,
         genres: ['indie', 'Desconocido']
-      }
+      };
       
       coordenadas = await this.getCoordenadas(data);
       console.log("COORDENADAS NUEVAS: ",coordenadas);
       
-      
-      this.resultados = this.returnArrayResultados(this.encontrado,dataSpoty,coordenadas)
-      console.log("Nuevos resultadossssss =>",this.resultados)
+      this.resultados = this.returnArrayResultados(this.encontrado,dataSpoty,coordenadas);
+      console.log("Nuevos resultadossssss =>",this.resultados);
       this.loading = false;
-    })
-
+    });
   }
 
   async getCoordenadas(artistaBD){
@@ -85,7 +65,6 @@ export class SearchComponent implements OnInit {
       latitud: null,
       longitud: null
     }
-
 
     /* this._concierto.getCordenadas(bodyID).then((data: any) =>{
       console.log("DATOS CONCIERTO ", data);

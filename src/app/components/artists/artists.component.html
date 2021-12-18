@@ -6,7 +6,7 @@
 <div class="row mx-5" *ngIf="!loading">
     <div class="col-5 text-center">
         <img class="artistImg img-fluid" [src]="artista.images | noImage" alt="">
-        <p class="fs-6 text-link mt-3">
+        <p class="fs-6 text-link mt-3" *ngIf="artista.external_urls?.spotify">
             <a [href]="artista.external_urls.spotify" class="text-light" target="_blank">Visitar página del artista</a>
         </p>
     </div>
