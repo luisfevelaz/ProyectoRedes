@@ -16,7 +16,8 @@ export class GlobalModel {
         GetID: '/LoginConcierto/',
         PostConcert: '/RegistroConcierto',
         DeleteConcert: '/borrarConcierto',
-        UpdateConcert: '/concierto'
+        UpdateConcert: '/concierto',
+        getCordenadas: '/cordenadas/'
     };
   
   }
