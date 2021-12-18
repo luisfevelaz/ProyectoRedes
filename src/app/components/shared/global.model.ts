@@ -7,7 +7,8 @@ export class GlobalModel {
       GetID: '/LoginArt/',
       PostArtist: '/RegistroArt',
       DeleteArtist: '/borrarArt',
-      UpdateArtist: '/artista'
+      UpdateArtist: '/artista',
+      GetUser: '/artistaPorNombre'
     };
   
     public static querysConcerts = {
@@ -15,7 +16,8 @@ export class GlobalModel {
         GetID: '/LoginConcierto/',
         PostConcert: '/RegistroConcierto',
         DeleteConcert: '/borrarConcierto',
-        UpdateConcert: '/concierto'
+        UpdateConcert: '/concierto',
+        getCordenadas: '/cordenadas/'
     };
   
   }
